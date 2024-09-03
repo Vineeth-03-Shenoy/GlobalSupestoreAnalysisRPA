@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="linqWorkflow" sap:VirtualizedContainerService.HintSize="1156,1763" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="linqWorkflow" sap:VirtualizedContainerService.HintSize="1473,2155" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -33,6 +33,7 @@
       <x:String>System.Numerics</x:String>
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.Excel</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -104,7 +105,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LINQ Practice" sap:VirtualizedContainerService.HintSize="541,1698" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LINQ Practice" sap:VirtualizedContainerService.HintSize="541,2090" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_Intermediate" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_GlobalSuperstore" />
@@ -126,118 +127,8 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
     <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_GlobalSuperstore]" DisplayName="Read Range Input" sap:VirtualizedContainerService.HintSize="479,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Data\Input\Global_Superstore2.xlsx" />
-    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="479,112" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="Data\Output\Results.xlsx" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="541,444" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:MultipleAssign DisplayName="Fix the Data Types of Columns" sap:VirtualizedContainerService.HintSize="479,356" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-            <ui:MultipleAssign.AssignOperations>
-              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="sd:DataTable">[dt_CleanedData]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="sd:DataTable">[dt_GlobalSuperstore.Clone()]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Row ID").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Integer)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Postal Code").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Integer)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Sales").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Double)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Quantity").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Integer)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Discount").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Double)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Profit").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Double)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
-                  <ui:AssignOperation.To>
-                    <OutArgument x:TypeArguments="s:Type">[dt_CleanedData.Columns("Shipping Cost").DataType]</OutArgument>
-                  </ui:AssignOperation.To>
-                  <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="s:Type">[GetType(Double)]</InArgument>
-                  </ui:AssignOperation.Value>
-                </ui:AssignOperation>
-              </scg:List>
-            </ui:MultipleAssign.AssignOperations>
-          </ui:MultipleAssign>
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="479,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,276" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeCode ContinueOnError="{x:Null}" Code="For Each row As DataRow In in_dt_GlobalSuperstore.AsEnumerable&#xA;io_dt_CleanedData.Rows.Add(row.ItemArray.Select(Function(o) o.ToString).ToArray)&#xA;Next" DisplayName="Invoke Code (Add Data Rows from dt_GlobalSuperstore to dt_CleanedData" sap:VirtualizedContainerService.HintSize="354,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-            <ui:InvokeCode.Arguments>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_GlobalSuperstore">[dt_GlobalSuperstore]</InArgument>
-              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_CleanedData">[dt_CleanedData]</InOutArgument>
-            </ui:InvokeCode.Arguments>
-          </ui:InvokeCode>
-        </Sequence>
-      </ui:CommentOut.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:CommentOut>
-    <Assign sap2010:Annotation.AnnotationText="Count the total number of 'First Class' Ship mode which come under 'Consumer' Segment and have Order Priority of 'Critical'" DisplayName="LINQ 1" sap:VirtualizedContainerService.HintSize="479,144" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="479,113" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="Data\Output\Results.xlsx" />
+    <Assign sap2010:Annotation.AnnotationText="Count the total number of 'First Class' Ship mode which come under 'Consumer' Segment and have Order Priority of 'Critical'" DisplayName="LINQ 1" sap:VirtualizedContainerService.HintSize="479,149" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[Count]</OutArgument>
       </Assign.To>
@@ -272,7 +163,7 @@ Select row).CopyToDataTable().RowCount]</InArgument>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteCell>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Find Product ID, Product Name which has made Maximum Profit per Region" DisplayName="LINQ 2" sap:VirtualizedContainerService.HintSize="479,114" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Find Product ID, Product Name which has made Maximum Profit per Region" DisplayName="LINQ 2" sap:VirtualizedContainerService.HintSize="479,117" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
@@ -315,7 +206,7 @@ Select row
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteRange>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Top 10 countries by Total Sales" DisplayName="LINQ 3" sap:VirtualizedContainerService.HintSize="479,99" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Top 10 countries by Total Sales" DisplayName="LINQ 3" sap:VirtualizedContainerService.HintSize="479,101" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
@@ -374,7 +265,7 @@ Select row
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteRange>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Count the number of items under each 'Order Priority' level that have Discount&gt;0" DisplayName="LINQ 4" sap:VirtualizedContainerService.HintSize="479,114" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Count the number of items under each 'Order Priority' level that have Discount&gt;0" DisplayName="LINQ 4" sap:VirtualizedContainerService.HintSize="479,211" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
@@ -401,7 +292,7 @@ Select dt_Intermediate.Rows.Add({Order_Priority, Group.Count(Function(d) d.Field
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -414,7 +305,7 @@ Select dt_Intermediate.Rows.Add({Order_Priority, Group.Count(Function(d) d.Field
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:WriteRange>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remove all Rows that do not have Postal Code" DisplayName="LINQ 5" sap:VirtualizedContainerService.HintSize="479,99" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Remove all Rows that do not have Postal Code" DisplayName="LINQ 5" sap:VirtualizedContainerService.HintSize="479,273" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_20">
@@ -456,7 +347,7 @@ Select row).CopyToDataTable()]</InArgument>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -477,10 +368,40 @@ Select row).CopyToDataTable()]</InArgument>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Top 10 items with the longest gap between Order date and Ship Date. return these Dates, Ship Mode, Order ID, Product ID, Customer ID, Country, and Order Priority." DisplayName="LINQ 6" sap:VirtualizedContainerService.HintSize="479,190" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Return the Order ID, Order Date, Ship date, Ship Mode, Product ID, Customer ID, Country, Order Priority and Day Gap between Order date and ship date.&#xD;&#xA;&#xD;&#xA;Criteria:&#xD;&#xA;1. Longest gap between the dates&#xD;&#xA;2. Year of Order Date must be 2014&#xD;&#xA;3. Country must be India&#xD;&#xA;4. Count of distinct Customer ID &gt;= 3 (customers who ordered more than twice)&#xD;&#xA;5. Sort by Customer ID&#xD;&#xA;" DisplayName="LINQ 6" sap:VirtualizedContainerService.HintSize="479,414" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-          <ui:AssignOperation To="{x:Null}" Value="{x:Null}" sap2010:WorkflowViewState.IdRef="AssignOperation_25" />
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_25">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[dt_Intermediate]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="sd:DataTable">[new DataView(dt_GlobalSuperstore).ToTable(false, new List(Of String)({"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Country","Product ID","Order Priority"}).ToArray())]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_26">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[dt_Intermediate]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row In dt_Intermediate.Select()
+Where row("Country").Equals("India") AndAlso row("Order Date").ToString.Contains("2014")
+Select row
+).CopyToDataTable()]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_27">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[dt_Intermediate]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From dte In dt_Intermediate.Select
+Group dte By DayGap = DateTime.ParseExact(dte("Ship Date").ToString,"dd-MM-yyyy", CultureInfo.InvariantCulture).Subtract(DateTime.ParseExact(dte("Order Date").ToString,"dd-MM-yyyy", CultureInfo.InvariantCulture)).ToString("dd") Into Group
+Select dt_Intermediate.Rows.Add({DayGap})
+).CopyToDataTable]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation To="{x:Null}" Value="{x:Null}" sap2010:WorkflowViewState.IdRef="AssignOperation_28" />
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
       <sap:WorkflowViewStateService.ViewState>
